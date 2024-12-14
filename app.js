@@ -28,8 +28,15 @@ async function init() {
 
     // Setup webcam
     const flip = true;
+    const constrains = {
+        video: {
+            facingMode: { exact: "environment" },
+            width: 200,
+            height: 200,
+        }
+    };
     webcam = new tmImage.Webcam(200, 200, flip);  // width, height, flip
-    await webcam.setup(); // request access to the webcam
+    await webcam.setup(constrains); // request access to the webcam
     await webcam.play();
     window.requestAnimationFrame(loop);
 
