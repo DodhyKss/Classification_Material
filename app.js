@@ -8,6 +8,7 @@ const descriptions = {
 };
 
 let model, webcam, labelContainer, maxPredictions;
+const devices = await navigator.mediaDevices.enumerateDevices();
 
 document.addEventListener("DOMContentLoaded", function() {
     // Automatically initialize the webcam and model
@@ -27,16 +28,8 @@ async function init() {
     maxPredictions = model.getTotalClasses();
 
     // Setup webcam
-    // Setup webcam dengan kamera belakang
-    const flip = false;
-    const constraints = {
-        video: {
-            facingMode: 'environment' // Ini akan memilih kamera belakang
-        }
-    };
-    
-    webcam = new tmImage.Webcam(200, 200, flip);
-    await webcam.setup(constraints); // Tambahkan constraints saat setup
+    webcam = new tmImage.Webcam(200, 200, false);
+    await webcam.setup({ deviceId: devices[0].deviceId }); // Tambahkan constraints saat setup
     await webcam.play();
     window.requestAnimationFrame(loop);
 
