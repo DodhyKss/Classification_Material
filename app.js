@@ -27,7 +27,7 @@ async function init() {
     maxPredictions = model.getTotalClasses();
 
     // Setup webcam
-    const flip = true;
+    const flip = false;
     const constrains = {
         video: {
             facingMode: { exact: "environment" },
