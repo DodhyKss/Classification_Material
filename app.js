@@ -27,16 +27,16 @@ async function init() {
     maxPredictions = model.getTotalClasses();
 
     // Setup webcam
+    // Setup webcam dengan kamera belakang
     const flip = false;
-    const constrains = {
+    const constraints = {
         video: {
-            facingMode: { exact: "environment" },
-            width: 200,
-            height: 200,
+            facingMode: 'environment' // Ini akan memilih kamera belakang
         }
     };
-    webcam = new tmImage.Webcam(200, 200, flip);  // width, height, flip
-    await webcam.setup(constrains); // request access to the webcam
+    
+    webcam = new tmImage.Webcam(200, 200, flip);
+    await webcam.setup(constraints); // Tambahkan constraints saat setup
     await webcam.play();
     window.requestAnimationFrame(loop);
 
