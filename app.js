@@ -8,7 +8,7 @@ const descriptions = {
 };
 
 let model, webcam, labelContainer, maxPredictions;
-const devices = await navigator.mediaDevices.enumerateDevices();
+
 
 document.addEventListener("DOMContentLoaded", function() {
     // Automatically initialize the webcam and model
@@ -28,6 +28,7 @@ async function init() {
     maxPredictions = model.getTotalClasses();
 
     // Setup webcam
+    const devices = await navigator.mediaDevices.enumerateDevices();
     webcam = new tmImage.Webcam(200, 200, false);
     await webcam.setup({ deviceId: devices[0].deviceId }); // Tambahkan constraints saat setup
     await webcam.play();
